@@ -16,30 +16,46 @@ import { Input } from "@/components/ui/input"
 import { useState } from "react"
 import Image from "next/image"
 import Link from "next/link"
+import { createAccount, signInUser } from "@/lib/actions/user.actions"
+import OTPModal from "./OTPModal"
 
-const authFormSchema=(formType:FormType)=>{
+const authFormSchema = (formType: FormType) => {
   return z.object({
-    email:z.string().email(),
-    fullName: formType === "sign-up" ? z.string().min(2).max(50):z.string().optional(),
+    email: z.string().email(),
+    fullName: formType === "sign-up" ? z.string().min(2).max(50) : z.string().optional(),
   })
 }
 
 
 type FormType = "sign-in" | "sign-up"
 const AuthForm = ({ type }: { type: FormType }) => {
-  const[isLoading,setIsLoading]=useState(false)
-  const[errorMessage,seterrorMessage]=useState('')
-  const formSchema =authFormSchema(type)
+  const [isLoading, setIsLoading] = useState(false)
+  const [errorMessage, seterrorMessage] = useState('')
+  const [accountId, setaccountId] = useState(null)
+  const formSchema = authFormSchema(type)
   const form = useForm<z.infer<typeof formSchema>>({
     resolver: zodResolver(formSchema),
     defaultValues: {
       fullName: "",
-      email:''
+      email: ''
     },
   })
 
   const onSubmit = async (values: z.infer<typeof formSchema>) => {
-    console.log(values)
+    try {
+      setIsLoading(true)
+      seterrorMessage('')
+      const user = type === 'sign-up' ? await createAccount({
+        fullName: values.fullName || "",
+        email: values.email,
+      }) : await signInUser({ email: values.email })
+      setaccountId(user.accountId)
+    } catch (error) {
+      seterrorMessage("Failed to create an account")
+    } finally {
+      setIsLoading(false)
+    }
+
   }
   return (
     <>
@@ -79,10 +95,10 @@ const AuthForm = ({ type }: { type: FormType }) => {
             )}
           />
           <Button type="submit" className="form-submit-button" disabled={isLoading}>
-          {type==="sign-in" ? "Sign In":"Sign Up"}
-          {isLoading && (
-            <Image src="/assets/icons/loader.svg" alt="loader" width={24} height={24} className="ml-2 animate-spin"/>
-          )}
+            {type === "sign-in" ? "Sign In" : "Sign Up"}
+            {isLoading && (
+              <Image src="/assets/icons/loader.svg" alt="loader" width={24} height={24} className="ml-2 animate-spin" />
+            )}
           </Button>
           {
             errorMessage && (
@@ -91,14 +107,16 @@ const AuthForm = ({ type }: { type: FormType }) => {
           }
           <div className="body-2 flex justify-center">
             <p className="text-light-100">
-            {type==="sign-in" ? "Don't have an account?":"Already have an account?"}
+              {type === "sign-in" ? "Don't have an account?" : "Already have an account?"}
             </p>
-            <Link href={type==="sign-in" ? "/sign-up":"/sign-in"} className="ml-1 font-medium text-brand">
-            {type==="sign-in" ? "Sign In":"Sign Up"} </Link>
+            <Link href={type === "sign-in" ? "/sign-up" : "/sign-in"} className="ml-1 font-medium text-brand">
+              {type === "sign-in" ? "Sign In" : "Sign Up"} </Link>
           </div>
         </form>
       </Form>
-      {/* otp-verification */}
+      {
+        accountId && <OTPModal email={form.getValues("email")} accountId={accountId} />
+      }
     </>
   )
 }
