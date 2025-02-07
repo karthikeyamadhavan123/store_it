@@ -3,7 +3,7 @@
 import { Query, ID } from "node-appwrite"
 import { createAdminClient, createSessionClient } from "../appwrite"
 import { appwriteConfig } from "../appwrite/config"
-import { parseStringfy } from "../utils"
+import { parseStringify } from "../utils"
 import { cookies } from "next/headers"
 import { redirect } from "next/navigation";
 
@@ -51,7 +51,7 @@ export const createAccount = async ({ fullName, email }: { fullName: string; ema
             }
         )
     }
-    return parseStringfy({ accountId })
+    return parseStringify({ accountId })
 }
 
 export const verifySecret = async ({ accountId, password }: { accountId: string, password: string }) => {
@@ -65,7 +65,7 @@ export const verifySecret = async ({ accountId, password }: { accountId: string,
             sameSite: "strict",
             path: "/",
         });
-        return parseStringfy({ sessionId: session.$id })
+        return parseStringify({ sessionId: session.$id })
     } catch (error) {
         handleError(error, "Failed to verify email OTP")
     }
@@ -83,7 +83,7 @@ export const getCurrentUser = async () => {
     if (user.total <= 0) {
         return null
     }
-    return parseStringfy(user.documents[0])
+    return parseStringify(user.documents[0])
 }
 
 export const signOutUser = async () => {
@@ -91,7 +91,6 @@ export const signOutUser = async () => {
     try {
         await account.deleteSession('current');
         const cookieStore = await cookies();
-        console.log("Before deletion:", cookieStore.get("appwrite-session")); // Debugging
         cookieStore.delete("appwrite-session");
 
     } catch (error) {
@@ -107,9 +106,9 @@ export const signInUser=async({email}:{email:string})=>{
         const existingUser= await getUserByEmail(email)
         if(existingUser){
             await sendEmailOTP({email})
-            return parseStringfy({accountId:existingUser.accountId})
+            return parseStringify({accountId:existingUser.accountId})
         }
-        return parseStringfy({accountId:null,error:"user not found"})
+        return parseStringify({accountId:null,error:"user not found"})
     } catch (error) {
         handleError(error,"failed to login")
     }

@@ -17,13 +17,13 @@ import { Button } from './ui/button'
 import FileUploader from './FileUploader'
 import { signOutUser } from '@/lib/actions/user.actions'
 interface Props {
-  ownerId: string
+  $id: string
   fullName: string,
   email: string,
   avatar: string
   accountId: string
 }
-const MobileNavigation = ({ ownerId, accountId, fullName, avatar, email }: Props) => {
+const MobileNavigation = ({ $id:ownerId, accountId, fullName, avatar, email }: Props) => {
   const [open, setOpen] = useState(false)
   const pathname = usePathname()
   return (
@@ -56,7 +56,7 @@ const MobileNavigation = ({ ownerId, accountId, fullName, avatar, email }: Props
           </nav>
           <Separator className='mb-4 bg-light-200/20' />
           <div className='flex flex-col justify-between gap-5 pb-5'>
-            <FileUploader/>
+            <FileUploader ownerId={ownerId} accountId={accountId}/>
             <Button type='submit' className='mobile-sign-out-button' onClick={async() => {await signOutUser }}>
               <Image src="/assets/icons/logout.svg" alt='logo' width={24} height={24} />
               <p>Logout</p>
