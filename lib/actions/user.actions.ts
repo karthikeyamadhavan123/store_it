@@ -72,18 +72,23 @@ export const verifySecret = async ({ accountId, password }: { accountId: string,
 }
 
 export const getCurrentUser = async () => {
-    const { databases, account } = await createSessionClient()
+    try {
+        const { databases, account } = await createSessionClient()
 
-    const result = await account.get()
-    const user = await databases.listDocuments(
-        appwriteConfig.databaseId,
-        appwriteConfig.userCollectionId,
-        [Query.equal("accountId", result.$id)]
-    )
-    if (user.total <= 0) {
-        return null
+        const result = await account.get()
+        const user = await databases.listDocuments(
+            appwriteConfig.databaseId,
+            appwriteConfig.userCollectionId,
+            [Query.equal("accountId", result.$id)]
+        )
+        if (user.total <= 0) {
+            return null
+        }
+        return parseStringify(user.documents[0])
+    } catch (error) {
+        console.log(error);
     }
-    return parseStringify(user.documents[0])
+
 }
 
 export const signOutUser = async () => {
@@ -101,15 +106,15 @@ export const signOutUser = async () => {
     }
 }
 
-export const signInUser=async({email}:{email:string})=>{
+export const signInUser = async ({ email }: { email: string }) => {
     try {
-        const existingUser= await getUserByEmail(email)
-        if(existingUser){
-            await sendEmailOTP({email})
-            return parseStringify({accountId:existingUser.accountId})
+        const existingUser = await getUserByEmail(email)
+        if (existingUser) {
+            await sendEmailOTP({ email })
+            return parseStringify({ accountId: existingUser.accountId })
         }
-        return parseStringify({accountId:null,error:"user not found"})
+        return parseStringify({ accountId: null, error: "user not found" })
     } catch (error) {
-        handleError(error,"failed to login")
+        handleError(error, "failed to login")
     }
 }
