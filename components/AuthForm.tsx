@@ -6,7 +6,6 @@ import { Button } from "@/components/ui/button"
 import {
   Form,
   FormControl,
-  FormDescription,
   FormField,
   FormItem,
   FormLabel,
@@ -50,7 +49,10 @@ const AuthForm = ({ type }: { type: FormType }) => {
         email: values.email,
       }) : await signInUser({ email: values.email })
       setaccountId(user.accountId)
-    } catch (error) {
+      
+    } catch (error:unknown) {
+      console.log(error);
+      
       seterrorMessage("Failed to create an account")
     } finally {
       setIsLoading(false)

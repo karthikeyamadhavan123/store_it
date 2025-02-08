@@ -3,7 +3,6 @@ import React, { useState } from 'react'
 import {
   Sheet,
   SheetContent,
-  SheetDescription,
   SheetTitle,
   SheetTrigger,
 } from "@/components/ui/sheet"

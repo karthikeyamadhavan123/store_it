@@ -32,7 +32,9 @@ const OTPModal = ({ email, accountId }: { email: string; accountId: string }) =>
             if (sessionId) {
                 router.push('/')
             }
-        } catch (error) {
+            // eslint-disable-next-line no-undef
+        } catch (error:unknown) {
+            console.log(error);
             console.log("Failed to verify otp");
 
         } finally {
