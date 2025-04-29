@@ -1,36 +1,47 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+🛒 StoreIt
+StoreIt is a modern e-commerce fabric store built using the MERN stack, designed to help fabric sellers effortlessly showcase and sell their products online. With an elegant UI, seamless user experience, Firebase backend integration, and scalable deployment on Hostinger, StoreIt empowers traditional fabric businesses to go digital and reach customers beyond their local reach.
 
-## Getting Started
+🧵 Overview
+StoreIt bridges the gap between fabric sellers and buyers by offering a streamlined, full-stack web platform that allows sellers to upload, manage, and sell a wide variety of fabrics, while customers can browse, search, and purchase items with ease. The platform supports admin and customer roles, offering tailored dashboards and functionality for both.
 
-First, run the development server:
+✨ Key Features
+🛍 Customer Features
+Product Catalog: Browse through a curated collection of fabrics with high-resolution images, prices, and descriptions.
 
-```bash
-npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
-```
+Advanced Filters: Sort by material, color, pattern, and price.
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+Cart & Checkout: Add products to the cart, review items, and place orders.
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+Search Functionality: Quickly find specific fabrics using keyword-based search.
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+Responsive UI: Fully optimized for mobile and desktop experiences.
 
-## Learn More
+🧑‍💼 Admin Features
+Product Management: Add, edit, or remove fabric listings, including uploading images to Firebase.
 
-To learn more about Next.js, take a look at the following resources:
+Order Management: View and process customer orders.
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+Inventory Tracking: Monitor available stock and update quantities.
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
+Dashboard Analytics (coming soon): Track sales, views, and customer interactions.
 
-## Deploy on Vercel
+🛠 Tech Stack
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
+Layer	Technology
+Frontend	Next.js, Tailwind CSS
+Backend	Firebase (Firestore, Storage, Auth)
+Database	Firebase Firestore
+Authentication	Firebase Auth
+Hosting	Hostinger (Frontend Deployment)
+Storage	Firebase Storage (for fabric images)
+ Future Enhancements
+Razorpay or Stripe integration for online payments
 
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+Admin analytics dashboard with graphs
+
+Coupon code system for offers
+
+Order tracking feature for customers
+
+Add reviews & ratings to fabrics
+
