@@ -1,47 +1,54 @@
-🛒 StoreIt
-StoreIt is a modern e-commerce fabric store built using the MERN stack, designed to help fabric sellers effortlessly showcase and sell their products online. With an elegant UI, seamless user experience, Firebase backend integration, and scalable deployment on Hostinger, StoreIt empowers traditional fabric businesses to go digital and reach customers beyond their local reach.
+# 🗄️ Store it – Your Private Google Drive Alternative
 
-🧵 Overview
-StoreIt bridges the gap between fabric sellers and buyers by offering a streamlined, full-stack web platform that allows sellers to upload, manage, and sell a wide variety of fabrics, while customers can browse, search, and purchase items with ease. The platform supports admin and customer roles, offering tailored dashboards and functionality for both.
+> A lightweight personal cloud storage app built with **Next.js** and **Appwrite**, designed for minimalists who want control over their data. Limited to 3GB storage — fast, private, and yours.
 
-✨ Key Features
-🛍 Customer Features
-Product Catalog: Browse through a curated collection of fabrics with high-resolution images, prices, and descriptions.
+---
 
-Advanced Filters: Sort by material, color, pattern, and price.
+## 🚀 Features
 
-Cart & Checkout: Add products to the cart, review items, and place orders.
+- ✅ **File Upload & Download** – Securely upload and access your files anytime.
+- 🔐 **User Authentication** – Powered by Appwrite’s built-in auth system.
+- 📦 **3GB Storage Quota** – Just enough for your essential files.
+- 🧹 **Clean & Minimal UI** – Built with a focus on simplicity and usability.
+- 💾 **Appwrite Storage SDK** – Seamlessly handles file management and metadata.
+- ⚙️ **Self-Hosted Option** – Full control over your backend infrastructure.
 
-Search Functionality: Quickly find specific fabrics using keyword-based search.
+---
 
-Responsive UI: Fully optimized for mobile and desktop experiences.
+## 📸 Screenshots
 
-🧑‍💼 Admin Features
-Product Management: Add, edit, or remove fabric listings, including uploading images to Firebase.
+<!-- Add screenshots here when ready -->
 
-Order Management: View and process customer orders.
+---
+<img width="1919" height="938" alt="Screenshot 2025-07-30 232431" src="https://github.com/user-attachments/assets/d1b1ad93-d2e4-45a5-b620-995147563662" />
 
-Inventory Tracking: Monitor available stock and update quantities.
+## 🧰 Tech Stack
 
-Dashboard Analytics (coming soon): Track sales, views, and customer interactions.
+| Tech           | Purpose                     |
+|----------------|-----------------------------|
+| [Next.js]   | Frontend framework             |
+| [Appwrite] | Backend-as-a-Service (BaaS)    |
+| Tailwind CSS       | Styling and responsive layout |
+| Vercel         | Deployment                     |
 
-🛠 Tech Stack
+---
+git clone https://github.com/your-username/store-it.git
+cd store-it
+npm install
+# or
+yarn install
+NEXT_PUBLIC_APPWRITE_ENDPOINT=https://localhost/v1
+NEXT_PUBLIC_APPWRITE_PROJECT=your_project_id
+NEXT_PUBLIC_APPWRITE_BUCKET=your_bucket_id
 
-Layer	Technology
-Frontend	Next.js, Tailwind CSS
-Backend	Firebase (Firestore, Storage, Auth)
-Database	Firebase Firestore
-Authentication	Firebase Auth
-Hosting	Hostinger (Frontend Deployment)
-Storage	Firebase Storage (for fabric images)
- Future Enhancements
-Razorpay or Stripe integration for online payments
-
-Admin analytics dashboard with graphs
-
-Coupon code system for offers
-
-Order tracking feature for customers
-
-Add reviews & ratings to fabrics
+## Roadmap
+ File uploads
+ User auth
+ File listing UI
+ Search files
+ Folder support
+ Public sharing with links
+ Expiry-based access
+ Encrypted file support
+ Dark mode
 
